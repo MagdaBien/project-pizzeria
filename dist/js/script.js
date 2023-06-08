@@ -96,6 +96,9 @@
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
     }
 
     initAccordion() {
@@ -122,7 +125,7 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log("initOrderForm");
+      //console.log("initOrderForm");
 
       thisProduct.form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -161,18 +164,32 @@
         // cucumber = {label: 'Cucumber', price: 1, default: true}
         for (let optionId in param.options) {
           const option = param.options[optionId];
+          const optionImage = thisProduct.imageWrapper.querySelector(
+            "." + paramId + "-" + optionId
+          );
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           if (formData[paramId] && formData[paramId].includes(optionId)) {
+            console.log(thisProduct.id, optionId);
+
+            if (optionImage) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+
             // check if the option is not default
             if (!option.default) {
-              // console.log(option.label + " dodajemy do ceny " + option.price);
               price += option.price;
+              if (optionImage) {
+                optionImage.classList.add(classNames.menuProduct.imageVisible);
+              }
             }
           } else {
+            if (optionImage) {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+
             // check if the option is default
             if (option.default) {
-              // console.log(option.label + " redukujemy cenę o" + option.price);
               price -= option.price;
             }
           }
