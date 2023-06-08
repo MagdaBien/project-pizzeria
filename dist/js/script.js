@@ -203,7 +203,7 @@
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      thisProduct.amountWidgetElem.addEventListener("update", function (event) {
+      thisProduct.amountWidgetElem.addEventListener("update", function () {
         thisProduct.processOrder();
       });
     }
@@ -255,13 +255,13 @@
 
     initActions() {
       const thisWidget = this;
-      thisWidget.input.addEventListener("change", function (event) {
+      thisWidget.input.addEventListener("change", function () {
         thisWidget.setValue(parseInt(thisWidget.input.value));
       });
-      thisWidget.linkDecrease.addEventListener("click", function (event) {
+      thisWidget.linkDecrease.addEventListener("click", function () {
         thisWidget.setValue(parseInt(thisWidget.input.value) - 1);
       });
-      thisWidget.linkIncrease.addEventListener("click", function (event) {
+      thisWidget.linkIncrease.addEventListener("click", function () {
         thisWidget.setValue(parseInt(thisWidget.input.value) + 1);
       });
     }
