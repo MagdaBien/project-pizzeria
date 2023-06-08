@@ -179,9 +179,6 @@
             // check if the option is not default
             if (!option.default) {
               price += option.price;
-              if (optionImage) {
-                optionImage.classList.add(classNames.menuProduct.imageVisible);
-              }
             }
           } else {
             if (optionImage) {
