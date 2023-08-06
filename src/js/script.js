@@ -68,8 +68,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
+      defaultMin: 0,
+      defaultMax: 10,
     },
 
     cart: {
@@ -101,14 +101,16 @@
       thisProduct.processOrder();
     }
 
+    // generate HTML for product and insert this element into the menu
     renderInMenu() {
       const thisProduct = this;
-      const generatedHTML = templates.menuProduct(thisProduct.data);
-      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
-      const menuContainer = document.querySelector(select.containerOf.menu);
-      menuContainer.appendChild(thisProduct.element);
+      const generatedHTML = templates.menuProduct(thisProduct.data); // generate HTML based on templete
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML); // create element using utils.....
+      const menuContainer = document.querySelector(select.containerOf.menu); // find menu container
+      menuContainer.appendChild(thisProduct.element); // add element to menu
     }
 
+    // founded DOM item - form, priceElem, cartButton etc (create references)
     getElements() {
       const thisProduct = this;
 
@@ -135,6 +137,7 @@
       );
     }
 
+    // show and hide product details
     initAccordion() {
       const thisProduct = this;
 
@@ -157,6 +160,7 @@
       });
     }
 
+    // adds EventListener to form elements - runs onece for each product
     initOrderForm() {
       const thisProduct = this;
 
@@ -178,6 +182,7 @@
       });
     }
 
+    // calculate price for product according selected options
     processOrder() {
       const thisProduct = this;
 
@@ -187,6 +192,7 @@
       // set price to default price
       let price = thisProduct.data.price;
 
+      // CALCULATE ACTUAL PRICE ACCORDING CHOSEN PARAMS (INGREDIENTS)
       // for every category (param)...
       // e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
       for (let paramId in thisProduct.data.params) {
@@ -231,6 +237,7 @@
       thisProduct.priceElem.innerHTML = price;
     }
 
+    // creatie a new instance of the AmountWidget class and put into product property
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
@@ -258,6 +265,7 @@
       };
       return productSummary;
     }
+
     prepareCartProductParams() {
       const thisProduct = this;
       const params = {};
@@ -291,6 +299,7 @@
     }
   }
 
+  // as input: whole div with input field, buttons +/- etc
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
@@ -298,10 +307,10 @@
       thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
 
-      //console.log("AmountWidget: ", thisWidget);
       //console.log("constructor arguments: ", element);
     }
 
+    // founded DOM item - input field, buttons +/- etc (create references)
     getElements(element) {
       const thisWidget = this;
 
@@ -317,6 +326,7 @@
       );
     }
 
+    // set and validate amount input
     setValue(value) {
       const thisWidget = this;
 
@@ -335,6 +345,7 @@
       thisWidget.input.value = thisWidget.value;
     }
 
+    // adds EventListener to form elements and set value +/-1
     initActions() {
       const thisWidget = this;
       thisWidget.input.addEventListener("change", function () {
@@ -389,18 +400,18 @@
 
       const generatedHTML = templates.cartProduct(menuProduct);
       thisCart.element = utils.createDOMFromHTML(generatedHTML);
-      const cartContainer = document.querySelector(select.containerOf.cart);
+      const cartContainer = document.querySelector(select.cart.productList);
       cartContainer.appendChild(thisCart.element);
 
-      thisCart.products.push(menuProduct);
-      console.log("thisCart.products", thisCart.products);
+      thisCart.products = new CartProduct(menuProduct, thisCart.element);
+      //console.log("thisCart.products", thisCart.products);
     }
   }
 
   class CartProduct {
     constructor(menuProduct, element) {
       const thisCartProduct = this;
-      thisCart.getElements(element);
+      thisCartProduct.getElements(element);
 
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.name = menuProduct.name;
