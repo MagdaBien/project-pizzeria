@@ -437,14 +437,15 @@
       thisCart.totalNumer = subtotalNumber;
 
       if (subtotalPrice > 0) {
+        thisCart.dom.deliveryFee.innerHTML = deliveryFee;
         thisCart.totalPrice = subtotalPrice + deliveryFee;
       } else {
+        thisCart.dom.deliveryFee.innerHTML = 0;
         thisCart.totalPrice = 0;
       }
       //console.log("thisCart.totalPrice", thisCart.totalPrice);
       //console.log("thisCart.totalAmount", thisCart.totalNumer);
 
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumer;
       for (let price of thisCart.dom.totalPrice) {
