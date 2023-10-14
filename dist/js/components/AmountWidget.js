@@ -1,69 +1,58 @@
 import { settings, select } from "../settings.js";
+import BaseWidget from "./BaseWidget.js";
 
 // as input: whole div with input field, buttons +/- etc
-class AmountWidget {
+class AmountWidget extends BaseWidget {
   constructor(element) {
+    super(element, settings.amountWidget.defaultValue);
     const thisWidget = this;
     thisWidget.getElements(element);
-    thisWidget.setValue(settings.amountWidget.defaultValue);
     thisWidget.initActions();
 
-    //console.log("constructor arguments: ", element);
+    // console.log("AmountWidget: ", thisWidget);
   }
 
   // founded DOM item - input field, buttons +/- etc (create references)
-  getElements(element) {
+  getElements() {
     const thisWidget = this;
 
-    thisWidget.element = element;
-    thisWidget.input = thisWidget.element.querySelector(
+    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(
       select.widgets.amount.input
     );
-    thisWidget.linkDecrease = thisWidget.element.querySelector(
+    thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(
       select.widgets.amount.linkDecrease
     );
-    thisWidget.linkIncrease = thisWidget.element.querySelector(
+    thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(
       select.widgets.amount.linkIncrease
     );
   }
 
-  // set and validate amount input
-  setValue(value) {
+  isValid(value) {
+    return (
+      !isNaN(value) &&
+      value >= settings.amountWidget.defaultMin &&
+      value <= settings.amountWidget.defaultMax
+    );
+  }
+
+  renderValue() {
     const thisWidget = this;
-
-    const newValue = parseInt(value);
-
-    // add validation
-    if (
-      thisWidget.value !== newValue &&
-      !isNaN(newValue) &&
-      newValue >= settings.amountWidget.defaultMin &&
-      newValue <= settings.amountWidget.defaultMax
-    ) {
-      thisWidget.value = newValue;
-      thisWidget.announce();
-    }
-    thisWidget.input.value = thisWidget.value;
+    thisWidget.dom.input.value = thisWidget.value;
   }
 
   // adds EventListener to form elements and set value +/-1
   initActions() {
     const thisWidget = this;
-    thisWidget.input.addEventListener("change", function () {
-      thisWidget.setValue(parseInt(thisWidget.input.value));
+    thisWidget.dom.input.addEventListener("change", function () {
+      // thisWidget.setValue(parseInt(thisWidget.dom.input.value));
+      thisWidget.value(parseInt(thisWidget.dom.input.value));
     });
-    thisWidget.linkDecrease.addEventListener("click", function () {
-      thisWidget.setValue(parseInt(thisWidget.input.value) - 1);
+    thisWidget.dom.linkDecrease.addEventListener("click", function () {
+      thisWidget.setValue(parseInt(thisWidget.dom.input.value) - 1);
     });
-    thisWidget.linkIncrease.addEventListener("click", function () {
-      thisWidget.setValue(parseInt(thisWidget.input.value) + 1);
+    thisWidget.dom.linkIncrease.addEventListener("click", function () {
+      thisWidget.setValue(parseInt(thisWidget.dom.input.value) + 1);
     });
-  }
-
-  announce() {
-    const thisWidget = this;
-    const event = new CustomEvent("update", { bubbles: true });
-    thisWidget.element.dispatchEvent(event);
   }
 }
 export default AmountWidget;

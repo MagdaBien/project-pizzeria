@@ -1,5 +1,7 @@
 import { select, templates } from "../settings.js";
 import AmountWidget from "./AmountWidget.js";
+import DatePicker from "./DatePicker.js";
+import HourPicker from "./HourPicker.js";
 
 class Booking {
   constructor(bookingWidget) {
@@ -23,6 +25,12 @@ class Booking {
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(
       select.booking.hoursAmount
     );
+    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
+      select.widgets.datePicker.wrapper
+    );
+    thisBooking.dom.rangeSlider = thisBooking.dom.wrapper.querySelector(
+      select.widgets.hourPicker.wrapper
+    );
   }
 
   initWidgets() {
@@ -32,10 +40,17 @@ class Booking {
       thisBooking.dom.hoursAmount
     );
     thisBooking.dom.hoursAmount.addEventListener("update", function () {});
+
     thisBooking.peopleAmountWidget = new AmountWidget(
       thisBooking.dom.peopleAmount
     );
     thisBooking.dom.peopleAmount.addEventListener("update", function () {});
+
+    thisBooking.datePickerkWidget = new DatePicker(thisBooking.dom.datePicker);
+    thisBooking.dom.datePicker.addEventListener("update", function () {});
+
+    thisBooking.rangeSliderWidget = new HourPicker(thisBooking.dom.rangeSlider);
+    thisBooking.dom.rangeSlider.addEventListener("update", function () {});
   }
 }
 export default Booking;
