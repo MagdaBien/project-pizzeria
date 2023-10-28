@@ -79,7 +79,12 @@ class Booking {
     thisBooking.booked = {};
 
     for (let item of bookings) {
-      thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      thisBooking.makeBooked(
+        item.date,
+        utils.numberToHour(item.hour),
+        item.duration,
+        item.table
+      );
     }
 
     for (let item of eventsCurrent) {
@@ -220,15 +225,25 @@ class Booking {
       body: JSON.stringify(payload),
     };
 
-    fetch(url, options);
-    thisBooking.makeBooked(
-      payload.date,
-      payload.hour,
-      payload.duration,
-      payload.table
-    );
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((parseResponse) =>
+        thisBooking.makeBooked(
+          parseResponse.date,
+          utils.numberToHour(parseResponse.hour),
+          parseResponse.duration,
+          parseResponse.table
+        )
+      );
 
-    console.log(payload);
+    for (let table of thisBooking.dom.tables) {
+      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      if (!isNaN(tableId) && tableId == payload.table) {
+        console.log("takenTable", payload.table);
+        table.classList.remove(classNames.booking.tableSelected);
+        table.classList.add(classNames.booking.tableBooked);
+      }
+    }
   }
 
   render(element) {

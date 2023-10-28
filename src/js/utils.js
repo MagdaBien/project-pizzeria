@@ -75,11 +75,8 @@ utils.numberToHour = function (number) {
 };
 
 utils.hourToNumber = function (hour) {
-  if (isNaN(hour)) {
-    const parts = hour.split(":");
-
-    return parseInt(parts[0]) + parseInt(parts[1]) / 60;
-  } else return hour;
+  const parts = hour.split(":");
+  return parseInt(parts[0]) + parseInt(parts[1]) / 60;
 };
 
 utils.dateToStr = function (dateObj) {

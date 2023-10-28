@@ -265,29 +265,50 @@
   ],
   "bookings": [
     {
-      "date": "2023-10-27",
-      "hour": 16,
+      "date": "2023-10-28",
+      "hour": 12,
       "table": 1,
-      "duration": 3,
-      "ppl": 2,
+      "duration": 10,
+      "ppl": 1,
       "phone": "",
       "address": "",
-      "starters": [
-        "water",
-        "bread"
-      ],
+      "starters": [],
       "id": 1
     },
     {
-      "date": "2023-10-27",
-      "hour": 21,
-      "table": 3,
-      "duration": 3,
-      "ppl": 2,
-      "phone": "1239",
-      "address": "bez starterow",
-      "starters": [],
+      "date": "2023-10-31",
+      "hour": 18.5,
+      "table": 1,
+      "duration": 10,
+      "ppl": 1,
+      "phone": "1237888",
+      "address": "Malinowa 45",
+      "starters": [
+        "water"
+      ],
       "id": 2
+    },
+    {
+      "date": "2023-10-28",
+      "hour": 22.5,
+      "table": 3,
+      "duration": 1,
+      "ppl": 1,
+      "phone": "",
+      "address": "",
+      "starters": [],
+      "id": 3
+    },
+    {
+      "date": "2023-10-28",
+      "hour": 12,
+      "table": null,
+      "duration": 1,
+      "ppl": 1,
+      "phone": "",
+      "address": "",
+      "starters": [],
+      "id": 4
     }
   ]
 }
