@@ -1,0 +1,186 @@
+#pages {
+  > * {
+    display: none;
+  }
+
+  > .active {
+    display: block;
+  }
+}
+
+
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.homeSection {
+  padding: 0;
+  margin: 0;
+}
+
+.gallery {
+  width: 193px;
+  height: 193px;
+  border-radius: $radius;
+  padding: 0;
+  margin: 0;   
+}
+
+.order {
+  border-radius: $radius;
+  background-image: url("../../images/layout/pizza-1.jpg");
+  background-size: 100% auto;
+  margin: 0px 6px 6px 12px;
+  width: 299px;
+}
+
+.book {
+  border-radius: $radius;
+  background-image: url("../../images/layout/pizza-2.jpg");
+  background-size: 100% auto;
+  margin: 0px 6px 6px 0;
+  width: 299px;
+}
+
+.opening {
+  background: $color-main;
+  border-radius: $radius;
+}
+
+.titleSection {
+  font-family: $font-header;
+  color: $color-light;
+  text-align: center;
+  margin: 40px;
+  transition-duration: 1s;
+}
+
+.titleOpening {
+  font-family: $font-header;
+  color: $color-light;
+  text-align: center;
+  margin: 40px auto 5px auto;
+}
+
+.titleSection:hover {
+  transform: translate(0,-20px);
+  -ms-transform: translate(0,-20px); /* Internet Explorer 9 */
+  -webkit-transform: translate(0,-20px); /* Safari i Chrome */
+  -o-transform: translate(0,-20px); /* Opera */
+  -moz-transform: translate(0,-20px); /* Firefox */
+}
+
+.subtitleSection {
+  color: $color-light;
+  text-align: center;
+  margin: 0 0 40px 0;
+}
+
+.opinionSection {
+  padding: 10px;
+}
+
+.openingSection {
+  padding: 0 12px 128px 12px;
+}
+
+.gallerySection {
+  border-radius: $radius;
+  height: 193px;
+  width: 193px;
+  padding: 0;
+}
+
+.love-share {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border-radius: $radius;
+  height: 193px;
+  width: 193px;
+  transition-duration: 1s;
+
+}
+
+.love-share:hover  {
+  background-color: black;
+  opacity: 0.5;
+  border-radius: $radius;
+  height: 193px;
+  width: 193px;  
+}  
+
+.icons {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  margin-right: -45%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition-duration: 1s;
+  color: $color-light;
+}
+
+.love-share:hover .icons {
+  opacity: 1;
+  transform: scale(2,2);
+  -ms-transform: scale(2,2); /* Internet Explorer 9 */
+  -webkit-transform: scale(2,2); /* Safari i Chrome */
+  -o-transform: scale(2,2); /* Opera */
+  -moz-transform: scale(2,2); /* Firefox */
+  color: $color-main;
+} 
+#sideNav { 
+margin: 0;
+}
+
+.bold {
+  font-weight: $font-bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+ 
+
+
+.g1  {
+  background-image: url("../../images/layout/pizza-4.jpg");
+  margin: 128px 12px 12px 12px;
+}
+.g2 {
+  background-image: url("../../images/layout/pizza-5.jpg");
+  margin: 128px 12px 12px 0;
+}  
+.g3 {
+  background-image: url("../../images/layout/pizza-6.jpg");
+  margin: 128px 0 12px 0;
+}  
+.g4 {
+  background-image: url("../../images/layout/pizza-7.jpg");
+  margin: 0 12px 22px 12px;
+}  
+.g5 {
+  background-image: url("../../images/layout/pizza-8.jpg");
+  margin: 0 12px 22px 0;
+}  
+.g6 {
+  background-image: url("../../images/layout/pizza-9.jpg");
+  margin: 0 0 22px 0;
+}
+
+a {
+  color: $color-main;
+}
+
+a.white,   a.white:hover {
+  color: $color-light;
+}
+
+
+

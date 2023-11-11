@@ -2,6 +2,7 @@ import { settings, select, classNames } from "./settings.js";
 import Product from "./components/Product.js";
 import Cart from "./components/Cart.js";
 import Booking from "./components/Booking.js";
+import HomePage from "./components/HomePage.js";
 
 const app = {
   initPages: function () {
@@ -9,7 +10,7 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
-    const idFromHash = window.location.hash.replace("#", "");
+    const idFromHash = window.location.hash.replace("#/", "");
 
     let pageMatchingHash = thisApp.pages[0].id;
     for (let page of thisApp.pages) {
@@ -68,7 +69,13 @@ const app = {
     const thisApp = this;
     thisApp.bookingWidget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(thisApp.bookingWidget);
-    //console.log("thisApp.bookingWidget", thisApp.bookingWidget);
+  },
+
+  initHomePage: function () {
+    const thisApp = this;
+    thisApp.homePageDom = document.querySelector(select.containerOf.homePage);
+    //console.log("thisApp.homePageDom", thisApp.homePageDom);
+    thisApp.homePage = new HomePage(thisApp.homePageDom);
   },
 
   initData: function () {
@@ -89,10 +96,22 @@ const app = {
 
   init: function () {
     const thisApp = this;
+    // reads a parameter after hash and activates the visibility of his div (page content)
+    // then activates and deactivates chosen links in the menu
     thisApp.initPages();
+
+    // retrieves data from the product database and creates an instance of Product class for each item
+    // which generates the menu (page content) in constructor
     thisApp.initData();
+
+    // create basket using Cart class
     thisApp.initCart();
+
+    // create booking page using Booking class
     thisApp.initBooking();
+
+    // create home page using HomePage class
+    thisApp.initHomePage();
   },
 
   initCart: function () {

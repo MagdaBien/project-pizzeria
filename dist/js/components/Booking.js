@@ -14,6 +14,7 @@ class Booking {
     thisBooking.chosenTable = "";
   }
 
+  // read start and stop dataParam
   getData() {
     const thisBooking = this;
     const startDataParam =
@@ -74,6 +75,7 @@ class Booking {
       });
   }
 
+  // get data events and create object thisBooking.booked = booked terms
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
     thisBooking.booked = {};
@@ -110,10 +112,11 @@ class Booking {
       }
     }
 
-    console.log("thisBooking.booked", thisBooking.booked);
+    // console.log("thisBooking.booked", thisBooking.booked);
     thisBooking.updateDOM();
   }
 
+  // update thisBooking.booked while date booked
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
 
@@ -167,6 +170,7 @@ class Booking {
     }
   }
 
+  // booking table
   initTables(event) {
     const thisBooking = this;
     const actualChosenTable = event.target.getAttribute(
@@ -239,7 +243,7 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if (!isNaN(tableId) && tableId == payload.table) {
-        console.log("takenTable", payload.table);
+        // console.log("takenTable", payload.table);
         table.classList.remove(classNames.booking.tableSelected);
         table.classList.add(classNames.booking.tableBooked);
       }
