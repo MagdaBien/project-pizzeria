@@ -36,6 +36,8 @@
   background-size: 100% auto;
   margin: 0px 6px 6px 12px;
   width: 299px;
+  height: 115px;
+  overflow: hidden;
 }
 
 .book {
@@ -44,6 +46,8 @@
   background-size: 100% auto;
   margin: 0px 6px 6px 0;
   width: 299px;
+  height: 115px;
+  overflow: hidden;
 }
 
 .opening {
@@ -51,11 +55,19 @@
   border-radius: $radius;
 }
 
+.subappear {
+  color: $color-light;
+  font-family: $font-text;
+  font-size: 14px;
+  font-weight: $font-normal;
+}
+
 .titleSection {
   font-family: $font-header;
   color: $color-light;
   text-align: center;
-  margin: 40px;
+  margin: 35px auto 0;
+  line-height: 53px;
   transition-duration: 1s;
 }
 
@@ -72,6 +84,8 @@
   -webkit-transform: translate(0,-20px); /* Safari i Chrome */
   -o-transform: translate(0,-20px); /* Opera */
   -moz-transform: translate(0,-20px); /* Firefox */
+  line-height: 45px;
+ 
 }
 
 .subtitleSection {
@@ -102,27 +116,42 @@
   border-radius: $radius;
   height: 193px;
   width: 193px;
-  transition-duration: 1s;
-
 }
 
 .love-share:hover  {
-  background-color: black;
-  opacity: 0.5;
   border-radius: $radius;
   height: 193px;
   width: 193px;  
 }  
 
+.overlay {
+  opacity: 0;
+  transition-duration: 1s;
+  position: absolute;
+  height: 193px;
+  width: 193px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: $radius;
+}
+
+.overlay:hover {
+  background-color: black;
+  opacity: 0.5;
+  height: 193px;
+  width: 193px;  
+}
+
 .icons {
   position: absolute;
-  top: 45%;
-  left: 45%;
-  margin-right: -45%;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition-duration: 1s;
-  color: $color-light;
 }
 
 .love-share:hover .icons {
@@ -132,7 +161,6 @@
   -webkit-transform: scale(2,2); /* Safari i Chrome */
   -o-transform: scale(2,2); /* Opera */
   -moz-transform: scale(2,2); /* Firefox */
-  color: $color-main;
 } 
 #sideNav { 
 margin: 0;
@@ -178,9 +206,16 @@ a {
   color: $color-main;
 }
 
-a.white,   a.white:hover {
-  color: $color-light;
+a.share {
+  color: $color-main;
+}
+a.heart {
+  color: red;
 }
 
+a.white,   a.white:hover {
+  color: $color-light;
+  text-decoration: none;
+}
 
 
