@@ -1,1 +1,1 @@
-http://project-pizzeria.bien2.repl.co/
+https://project-pizzeria-1.bien2.repl.co/
